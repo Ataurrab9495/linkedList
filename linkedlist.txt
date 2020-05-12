@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node *next;
+};
+class linkedList
+{
+    public:
+    node *head;
+    linkedList()
+    {
+        head=NULL;
+    }
+  void push(int data)
+  {
+      node *new_node = new node();
+      new_node->data=data;
+      new_node->next=head;
+      head=new_node;
+  }  
+  void reverse()
+  {
+      node *current = head;
+      node *prev =NULL , *next =NULL;
+      while(current != NULL)
+      {
+      next=current->next;
+      current->next=prev;
+      prev=current;
+      current=next;
+      }
+   head=prev;
+  }
+  int getcount(node *head)
+{
+    int count=0;
+    node *current = head;
+    while(current != NULL)
+    {
+        count++;
+        current=current->next;
+    }
+    return count;
+}
+void print()
+{
+    node *current=head;
+    while(current !=NULL)
+    {
+        cout<<current->data<<" ";
+        current=current->next;
+    }
+}
+};
+int main ()
+{   node *head =NULL;
+    class linkedList obj;
+    obj.push(2);
+    obj.push(5);
+    obj.push(6);
+    obj.push(1);
+    obj.push(9);
+    obj.push(3);
+    cout<<"\n Linked list before reversing:- \n";
+    obj.print();
+    obj.reverse();
+    cout<<"\n Linked list after reversing:- \n";
+    obj.print();
+    cout<<"\n Number of node present in the linked list:- "<<obj.getcount(head);
+return 0;
+}
